@@ -4,6 +4,7 @@ import com.pmu.miirphys.race.repository.model.Starter;
 import com.pmu.miirphys.race.repository.model.Race;
 import com.pmu.miirphys.race.repository.StarterRepository;
 import com.pmu.miirphys.race.repository.RaceRepository;
+import jakarta.validation.Valid;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -62,7 +63,7 @@ public class RaceController {
     }
 
     @PostMapping("/add-race")
-    public Race addRace(@RequestBody Race race) throws RaceNameException {
+    public Race addRace(@Valid @RequestBody Race race) throws RaceNameException {
 
         if (Strings.isEmpty(race.getName())) throw new RaceNameException(race.getName());
 
@@ -80,7 +81,7 @@ public class RaceController {
     }
 
     @PostMapping("/{raceId}/add-starter")
-    public Starter addStarter(@PathVariable Long raceId, @RequestBody Starter starter) throws RaceNotFoundException {
+    public Starter addStarter(@PathVariable Long raceId, @Valid @RequestBody Starter starter) throws RaceNotFoundException {
 
         Optional<Race> race = raceRepository.findById(raceId);
 

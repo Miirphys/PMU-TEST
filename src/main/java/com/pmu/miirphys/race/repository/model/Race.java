@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,11 +26,13 @@ public class Race {
 
     @Setter
     @Getter
+    @NotBlank(message = "Name is mandatory")
     private String name;
 
     @Setter
     @Getter
     @JsonFormat(pattern = "yyyy-MM-dd")
+    @NotBlank(message = "Date is mandatory")
     private LocalDate date;
 
 }

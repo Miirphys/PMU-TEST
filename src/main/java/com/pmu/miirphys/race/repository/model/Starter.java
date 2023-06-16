@@ -2,6 +2,7 @@ package com.pmu.miirphys.race.repository.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +21,7 @@ public class Starter {
 
     @Getter
     @Setter
+    @NotBlank(message = "Name is mandatory")
     private String name;
 
     @Getter
